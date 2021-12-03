@@ -60,7 +60,6 @@ public class Main extends JFrame {
         JMenuItem aboutProgramItem = spravkaMenu.add(aboutProgramAction);
 
         Action saveToTextAction = new AbstractAction("Сохранить в текстовый файл") {
-
             public void actionPerformed(ActionEvent event) {
                 if (fileChooser==null) {
                     fileChooser = new JFileChooser();
@@ -75,7 +74,6 @@ public class Main extends JFrame {
         saveToTextMenuItem = fileMenu.add(saveToTextAction);
         saveToTextMenuItem.setEnabled(false);
         Action saveToGraphicsAction = new AbstractAction("Сохранить данные для построения графика") {
-
             public void actionPerformed(ActionEvent event) {
                 if (fileChooser==null) {
                     fileChooser = new JFileChooser();
@@ -88,7 +86,18 @@ public class Main extends JFrame {
         };
         saveToGraphicsMenuItem = fileMenu.add(saveToGraphicsAction);
         saveToGraphicsMenuItem.setEnabled(false);
-        
+
+        Action searchValueAction = new AbstractAction("Найти значение многочлена") {
+            public void actionPerformed(ActionEvent event) {
+                String value = JOptionPane.showInputDialog(Main.this, "Введите значение для поиска",
+                        "Поиск значения", JOptionPane.QUESTION_MESSAGE);
+                renderer.setNeedle(value);
+                getContentPane().repaint();
+            }
+        };
+        searchValueMenuItem = tableMenu.add(searchValueAction);
+        searchValueMenuItem.setEnabled(false);
+
         JLabel labelForFrom = new JLabel("X изменяется на интервале от:");
         textFieldFrom = new JTextField("0.0", 10);
         textFieldFrom.setMaximumSize(textFieldFrom.getPreferredSize());
