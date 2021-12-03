@@ -74,6 +74,21 @@ public class Main extends JFrame {
         };
         saveToTextMenuItem = fileMenu.add(saveToTextAction);
         saveToTextMenuItem.setEnabled(false);
+        Action saveToGraphicsAction = new AbstractAction("Сохранить данные для построения графика") {
+
+            public void actionPerformed(ActionEvent event) {
+                if (fileChooser==null) {
+                    fileChooser = new JFileChooser();
+                    fileChooser.setCurrentDirectory(new File("."));
+                }
+                if (fileChooser.showSaveDialog(Main.this) == JFileChooser.APPROVE_OPTION);
+                saveToGraphicsFile(fileChooser.getSelectedFile());
+
+            }
+        };
+        saveToGraphicsMenuItem = fileMenu.add(saveToGraphicsAction);
+        saveToGraphicsMenuItem.setEnabled(false);
+        
         JLabel labelForFrom = new JLabel("X изменяется на интервале от:");
         textFieldFrom = new JTextField("0.0", 10);
         textFieldFrom.setMaximumSize(textFieldFrom.getPreferredSize());
